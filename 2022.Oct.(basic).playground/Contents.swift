@@ -1,7 +1,8 @@
 import Foundation
 
-// <<<<10.1(Sat)>>>>
+// <<<<10.1(Sat)>>>>(1)
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//(이번주 월,화 수업요약 및 복습)
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
 
@@ -87,3 +88,82 @@ func sayHello2(){
 print("\(sayHello2())")
 
 //*객체 = 인스턴스 = house ==> 인스턴스.~ ex) expert.moveforward()라는 메서드를 붙였음.
+
+
+// <<<<10.1(Sat)>>>>(2)
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//(이번주 화,수 수업요약 및 복습)
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//함수의 형태
+// func animals(name: String, number: Int) -> String{
+//   `~~`
+// }
+//클래스의 형태는?
+//class 새로운클래스이름 :부모클래스이름 {
+   //프로퍼티/인스턴스 메서드/타입 메서드
+
+
+class Bankaccount{
+    var accountBalalnce: Float = 0
+    var accountNumber: Int = 0
+    //위의것은 뱅크클래스의 프로퍼티이고 아래는 매서드이다
+    //그런데 다른것의 매서드가아님 바로 위의 잔고와숫자들의 매서드이므로
+    //class. <---이것을 표시하여 코드치진 않는다
+    func displayBalcne{
+      print("balance is \(accountBalalnce)")
+      print("number is \(accountNumber)")
+      
+    }
+}
+///그리고 이것들을 ...'클래스인스턴스 선언하기와 초기화를 원하면'
+
+var account1: Bankaccount = Bankaccount()
+
+//이렇게 나온 결과물들이 저장되는게아닌 초기화가 되어서 다시 생성되기를 원한다면?
+//강사님의 표현을 빌리자면, :생성하는 시점에 해야할 초기화 작업이 있을수 있따면??
+//그럴떈 classs의 매서드를 이용한다. 어떤 매서드? "init"
+
+//14행 아래쪽에 이렇게 넣으면 된다
+      init(number: Int, balance: Float){
+        accountNumber=0
+        accountBalalnce=0
+      }
+
+//그렇다면 순서대로 생성된 클래스(12)와 프로퍼티(13~14) 매서드(19~20)
+//그리고 인스턴스(?)<--여긴좀 헷갈림 (26)
+//책에선 'aaount1'이게 인스턴스라고하고
+//클래스인스턴스.프로퍼티 or 클래스인스턴스.매서드()
+
+//그리고 아예 값도 지정 가능하다고한다 var account1.accountBalance = 5.292
+//**참고로 계좌입금가능한 총합설정했떤max는(ppt참고), 클래스인스턴스.매서드의
+//형태가아닌, 직접클래스르라져와서  클래스.타입매서드 이형태로 호출해야한다
+
+//<그다음 내가 헷갈린건 저장과 연산 프로퍼티인데>
+//저장프로퍼티는 계좌번호,이름 같은것으로 '상수나 변수에'담기는 값이다!
+//반면 연산프로퍼티는 현재잔액(수수료뺀나머지)같이 값을 설정하거나 가져오는 시점에서
+//결과값이 변경되어 연산로직이 필요할떄 쓰이면 좋다
+//***getter게터를 생성하고 '선택적'으로 setter메서드를 생성하며,이곳에 연상을 수행할코드가 담긴다
+
+class Bankaccount2{
+    var accountBalalnce2: Float = 0
+    var accountNumbe2r: Int = 0
+    let fees: Float = 25.00   //수수료를 새로 프로퍼티에 추가하면
+
+    var balancelessFees: Float = {  //책의 표현을 빌리자면        '현잔액-수수료'를 빼는 연산프로퍼티를 반환하는 게터를              추가했다고한다.
+        get{
+            return accountBalalnce2 - fees
+        }
+        set{
+              accountBalalnce2 = newBalance -fees
+        }
+    }
+
+    func displayBalcne2{
+      print("balance is \(accountBalalnce2)")
+      print("number is \(accountNumber2)")
+      
+    }
+}
+
+//프로토콜?? --->클래스가 충족해야하는 최소한의 요구사항들의 규칙들
+
