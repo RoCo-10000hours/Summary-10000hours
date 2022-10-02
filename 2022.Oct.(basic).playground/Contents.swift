@@ -167,3 +167,142 @@ class Bankaccount2{
 
 //프로토콜?? --->클래스가 충족해야하는 최소한의 요구사항들의 규칙들
 
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//<<10.2(일) (1)>>>
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+class Bankaccount{
+    var accountBalalnce: Float = 0
+    var accountNumber: Int = 0
+    let fees: Float = 25.00   //수수료를 새로 프로퍼티에 추가하면
+
+    var balancelessFees: Float = {  //책의 표현을 빌리자면        '현잔액-수수료'를 빼는 연산프로퍼티를 반환하는 게터를              추가했다고한다.       
+        get{        
+            return accountBalalnce - fees
+        }
+        set{ 
+              accountBalalnce = newBalance -fees
+        }
+    }
+    init(number: Int, balance: Float){
+        accountNumber = number
+        accountBalalnce = balance
+     }
+    func displayBalcne{
+      print("balance is \(accountBalalnce)")
+      print("number is \(accountNumber)")
+      
+    }
+}
+
+//이상태에서 기존의 Bank account 이외에 추가로 '저축하는 게좌'를 넣어야한다면?
+//class savingAccount {~} 이렇게 처음부터 다시 쭉 써내려가면 비효율적이다
+//그래서 나온게 지금 이야기할 개념인 슈퍼-서브클래스관계이다
+class savingAccount: Bankaccount {
+  //-->풀어설명하면, saving~를 선언하고 부모클래스를 bank~로지정한것이다
+    //이럴 경우 bank~ 의 모든 속성,매서드를 상속받는 서브클래스가 된다
+      var interestRate: Float = 0.0
+      func calculateinterate() -> Float{
+        return interestRate * accountBalalnce
+      }
+
+//그런데 만약 여기서 ...상속받은 매서드들중 필요없는건 지우고 싶다면????
+//그럴때를 위해 나온개념이 '오버라이드override'->> 덮기+쓰기
+//주의할점은 return,매개변수등의 타입이 일치해야만한다
+
+
+    override func displayBalcne{
+      print("balance is \(accountBalalnce)")
+      print("number is \(accountNumber)")
+      //여기에 추가로
+      print("prevailing interest is \(interestRate)")
+    }   //이러면 displayBalance라는 슈퍼클래스의 매서드를
+          //savingaccount라는 서브클래스만의 다시쓰여진 매서드가 된다
+  ///그런데....만약 이조차도 코딩써내려가는게 귀찮다면???
+  //왜냐하면 print print print... 이렇게 3번을 써야하기때문에 이걸 위해나온게
+  //super . ~~ 이다 !! 적용해보면
+
+    override func displayBalcne{
+      super.displayBalcne()
+      print("prevailing interest is \(interestRate)")
+    }
+
+//그러면 슈퍼클래스에 있던 init?은 이역시도 상속이되는데 하위클래스에서는
+//새로운 변수가 추가가 되어지기에 이는 따로 추가해넣어야한다
+//다시말해 saviingAccount는 이자율에대한 새로운 변수가 필요하다
+
+    init(number: Int, balance: Float, rate: Float){
+          interestRate = rate
+          super.init()(number: numebr, balance: balance)
+    }     //슈퍼클래스의 init이 맨 마지막으로 온 이유는?
+    //일단은 이해안가지만. 초기화과정에서 발생할수있는 잠재적 문제 해결위해서란다..
+}  
+
+//그러면 이제부터 이렇게 만들어진 하위클래스를 사용해볼까??
+// 즉, :::::::하위클래스 초기화하기::::::::
+let savings1 = savingAccount(
+              number = 12345
+              balance = 5000.0
+              rate = 0.09
+)
+print(savings1.calculateinterate())
+savings1.displayBalcne()
+
+//<익스텐션 extension>>
+//하위클래스를 생성하지 않고 기존클래스에 매서드,init, property,  get/set등의기능을 추가하여 사용가능하다
+
+// extension 클래스네임
+extension Double {
+    var squared: Double{
+      return self * self
+    }
+    var cubed: Double{
+      return self * self * self
+    }
+}       //Double이라는 클래스에 제&세제곱값을 반환하는 프로퍼티생성
+let myValue: Double = 3.0
+print(myValue.squared)
+
+
+//<<구조체에 관하여..>>
+//키워드가 class에서 ' sturct '로 바꼈을뿐 기본구조는 공통되는점이 많다.
+//중요한건 공통점이아닌 무엇이 다른지 차이점에 대한 개념을 알아두는것!
+//구조체 인스턴스 ==> 값value 타입 , copy개념 (즉, 수정시 원본영향x)     
+//클래스 인스턴스 ==> 참조reference 타입, shared개념 (즉,수정시 원본도변함)
+struct sampleStruct{
+
+  var name: String
+  
+  init(name: String){
+        self.name = name
+  }
+}
+let myStruct1 = sampleStruct(name: "MARK1")
+var myStruct2 = myStruct1     //**mystruct1을 복사하는 mystruct2
+myStruct2.name = "David"    //값타입이기에 원본에 영향이 없으므로 출력하게되면 아래처럼 나온다.
+
+print(myStruct1.name)    //각각 출력시 Makr1
+print(myStruct2.name)             //David
+
+
+//------>>>이것들을  그대로 keyword만 class로 바꾼다면?
+class sampleStruct{
+
+  var name: String
+  
+  init(name: String){
+        self.name = name
+  }
+}
+let myStruct1 = sampleStruct(name: "MARK1")
+var myStruct2 = myStruct1    
+myStruct2.name = "David"
+print(myStruct1.name)    //각각 출력시 David
+print(myStruct2.name)             //David
+//즉, 원본까지 영향을주게되는 공유경제!
+//왜??????
+//동일한 인스턴스에대한 reference(참조)체 이기 떄문이다
+///클래스 -->상속이 가능,애초에 상속을 염두해두고 만드는거기도하지만 여튼
+//          상속 + 프로토콜 (option)
+//구조체 ---> 상속자체가 x, 그렇기에 프로토콜만을 이용함
+
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
