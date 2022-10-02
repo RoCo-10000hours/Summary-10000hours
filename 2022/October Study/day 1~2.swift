@@ -400,8 +400,69 @@ var bootDict2 = [String : String]()
 //**근본적인 질문????????@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //8***8****8 이렇게 빈 배열등을 만들어내는 생성하는 이유는 무엇인가??
 //이는 설계이다... 무슨설계?? ---->문자열 key와 문자열 value를 저장하기위해
-//계된 빈 딕셔너리를 만들기 위해서이다!!!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//설계된 빈 딕셔너리를 만들기 위해서이다!!!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+
+
+
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+
+
+var bootDict3 = [1: "newjeans",
+                 2: "ive",
+                 3: "nmixx"]
+print(bootDict3.count) //딕셔너리 항목개수를 알려주는 '프로퍼티'
+print(bootDict3[3])     
+print(bootDict["100-234"])  //딕셔너리들의 value에 접근하는방법이다
+//그런데 만약 지정되니 key가 오타이거나 아니면 아예 없으면?
+//default 값을 정해주어서 따로 안내해주도록하자
+print(bootDict["100-234", default:"not found"])//harry potter1
+print(bootDict["100-000", default:"not found"])//not found 출력됨
+// 접근을 알았으니 이번엔 갱신을 할차례!! 새로 덧씌워 보자!!
+bootDict["100-234"] = "holly shit!"
+print(bootDict["100-234", default:"not found"])//holly~로 바뀜
+//이렇게도 해볼 수 있따
+bootDict.updateValue("happy day", forKey: "100-234" )//happyday!!
+print(bootDict["100-234", default:"not found"])
+
+
+//배열의 추가 append 삽입 insert 제거 remove 매서드가 있었떤것처럼
+//딕셔너리는???
+//굉장희 형태가 쉽다
+//딕셔너리변수[키] = 값
+bootDict3[4] = "bts"  //형태만보면 아까 덧씌우는거랑 똑같음
+print(bootDict3)
+//삭제하기는?  value----> nil 을 넣어주면됨다.
+bootDict3[4] = nil
+print(bootDict3)        //bts항목이 삭제가 된다
+bootDict3.removeValue(forKey: 3)
+print(bootDict3)          //nmixx 항목도 삭제가된다.. 
+///마지막으로 배열과 마찬가지로 반복을 원해?? 이것 역시 for 구문
+//그러나 단순 for 구문이 아닌 'tuple'을 이용한다!!!
+//----------->
+// for (bookIdAndTitle) in bookdict{
+//     print("book id:\(bookid), title:\(title)")
+// }
+//이러면 책 dict항모을 모두 가져다가 각각의 키와 값을 출력하게 된다!
+
+
+
+//@@@**** 추가
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ///// 
+//예제 3번 조원들의 정답!--->>
+headLine(3)
+
+let favoriteArtists : [String] = ["뉴진스","아이유","아이유","tom misch","프나","Benson boone","수지","tyga"]
+
+let dict = Dictionary(uniqueKeysWithValues: zip(names, favoriteArtists))
+//uniqueKeysWithValues 초기화를 위해서... (**ppt136page참고하자)
+for (k,v) in dict {
+    print("\(k) : \(v)")
+}
+//이를 통해 [조이름 : 좋아하는 아티스트]딕셔너리를 생성할떄
+//내가 했던 것처럼 조이름을 일일이 다쓰지 않아도 되었다@@@
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
