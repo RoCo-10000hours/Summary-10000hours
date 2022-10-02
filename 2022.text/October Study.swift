@@ -169,7 +169,7 @@ class Bankaccount2{
 
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //<<10.2(일) 이번주 수,목 분량 (1)>>>
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 class Bankaccount{
     var accountBalalnce: Float = 0
     var accountNumber: Int = 0
@@ -305,4 +305,99 @@ print(myStruct2.name)             //David
 //          상속 + 프로토콜 (option)
 //구조체 ---> 상속자체가 x, 그렇기에 프로토콜만을 이용함
 
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//<<10.2(일)(2) 이번주 목,금 분량 >>>
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+//배열초기화, 배열시킬경우 각각의 값들을 할당받음
+//타입은 꼭 써야할까? 내부에서 자체적으로 타입추론하는경우도 있음
+
+var treeArray: [String] = [ "Pine", "Oak", "Yew" ]
+print(treeArray)
+var treeArray2 = [ "Pine", "Oak", "Yew" ]
+print(treeArray2)    
+var treeArray3: Array<String> = [ "Pine", "Oak", "Yew" ]
+print(treeArray3)     //이 3개는 같은 값이 출력된다
+
+var newarray = [String](repeating: "반복", count: 10 )
+print(newarray)
+
+//기존의 배열 2개가 같은 타입으로 나열될경우 그 두 배열을 합치기 가능
+let firstArray = ["a", "b","c"]        //[String]타입
+let secondArray = ["d", "e", "f"]      //[String]타입
+let thirdArray = firstArray + secondArray
+print(thirdArray)
+
+///추가로 배열이 비어있는지 확인해줄수 있는데 그러기위해선
+//불리언(true,false) 타입인 isEmpty(프로퍼티)를 이용한다. 예를들자면
+var colors = ["red", "green", "yellow"]
+  if colors.isEmpty{
+  }
+  if colors.count < 1{
+
+  }                         //사실 위아래는 같은의미이다. 그러나 위쪽방식을 쓰기를 추천한다고 되어있음
+
+////*<<<기본 용어팁 (conunt 사람이 셀때, index 컴터가 셀떄)>>>>
+print(treeArray[0]) ////----> 0이라는 index ---> 1번 자리 카운트
+
+//랜덤섞기 ----> 셔플(shuffled)매서드를 사용해보자
+let randomColors = colors.shuffled()
+print(randomColors)
+// var randomColors2 = colors.shuffled()
+// print(randomColors)          -->var도 해봤는데 이건 error남
+
+//**배열에 새로운 항목을 "추가"하고 싶으면?????
+//위의 셔플() 매서드처럼 어펜드()매서드를 이미 애플이 편의상 만들어둠!!
+colors.append("black")
+print(colors)
+//만약 여러개를 넣고싶다?
+// colors.append("white", "purple")
+// print(colors)          ---->이렇게하면 error 그래서나온게 아래방식
+colors += ["white","purple"]
+print(colors)
+
+//위의 방식과는 살짝 개념적으로 다른것으로는 "삽입"이 있따"
+//추가는 사람이 임의로 index를 결정못했지만 삽입의 경우 지정이가능하다
+colors.insert("gold", at: 0)
+print(colors)     //gold라는 새 항복이 0이라는 index에 추가되었음
+//마찬가지 개념으로 순서를 콕 찝어서 항목삭제가능 2가지 유형으로 익혀두자
+colors.remove(at: 0)
+colors.removeLast()
+colors.removeFirst()
+//colors.removeSecond()    <----실험 결과 이건 안됨
+print(colors)
+
+//반복문 + 배열===> 배열반복하기
+//형태를 잘봐두자 아래의 예시를
+//배열들을 바로바로 프린트하는 for 구문이다. 다시봐도 헷갈림...(-_-)
+for color in colors{
+    print(color)
+}             //for in --->하나씩 꺼내서 처리하기
+    //print안에 colors(x)color(o)-->? 변수명이 color이기에(?)...
+    //여튼 이러면 결과물은 남은 색깔들을 "" 부호없이 종열로 한줄씩 출력됨
+
+let mixedArray: Any = ["hi", 22, 0.2]
+print(mixedArray)
+
+
+//<<딕셔너리> 얘는 key-value로 쌍을 지어이루어져있따
+var bootDict: [String : String] = [
+                                 "100-234" : "harry potter1",
+                                 "100-235" : "harry potter2"
+]
+print(bootDict)
+//빈배열의 딕셔너리도 생성가능 이럴떈.. 아래처럼한다
+var bootDict2 = [String : String]()
+//**근본적인 질문????????@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//8***8****8 이렇게 빈 배열등을 만들어내는 생성하는 이유는 무엇인가??
+//이는 설계이다... 무슨설계?? ---->문자열 key와 문자열 value를 저장하기위해
+//계된 빈 딕셔너리를 만들기 위해서이다!!!@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
