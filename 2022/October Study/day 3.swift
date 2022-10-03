@@ -20,7 +20,7 @@ import Foundation
 
 //여러줄의 문자열을 출력하고 싶다??----> 삼중 따옴표!!!
 var multipleline = """
- 안녕하세유, 만나서 반갑습니다,
+ 안녕하세요, 만나서 반갑습니다
 nice to meet and glad happy to meet u
 """
 print(multipleline)
