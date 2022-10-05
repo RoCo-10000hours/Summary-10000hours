@@ -329,6 +329,15 @@ if let removeGenre = favoriteGenres2.remove("Rock") {
                           //만약 실패했으면 nil --->else
   print(favoriteGenres2) // 출력 ---> "K-POP", "Ballad"
 
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// if let에 대한 다시 상기!!!
+ if let myName = name {
+    print("\(myName)")
+}   else("nil입니다")     //-->myName이 name이면 name으로 출력하고
+                        //그렇지않으면 nil~ 을 출력하라
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ 
 //---------------------------------------------------------------
 
 //<< 'contain 메서드'를 이용해 집합내 특정아이템 유뮤 판별 >>
