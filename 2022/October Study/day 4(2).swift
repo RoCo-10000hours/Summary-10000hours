@@ -287,3 +287,55 @@ greeting = "안녕 ! "             //5
 // 5교시 내용 
 //---------------------------------------------------------------
 //--------------------------------------------------------------
+
+
+// << 집합 Set >>
+// 순서와 상관없이 같으타입의 다른 값을 저장가능함
+//.... 즉, ( 순서x & 중복x )
+//순서가 없기에 index로 요소를 불러와 사용하긴 힘들다
+
+var letters = Set<Characher>()
+//의미하는바는? 캐릭터charachter인데 set의 형태로 저장할거야 라는 의미
+var favoriteGenres: Set<String> = ["Ballad", "Rock", "K-POP"]
+// array배열과의 차이는? 순서x,중복x
+
+//---------------------------------------------------------------
+
+//<<집합 - '아이템 갯수' count프로퍼티로 찾기>>
+var favoriteGenres: Set<String> = ["Ballad", "Rock", "K-POP"]
+print("I like \(favoriteGenres.count)genres of music")   //카운트(count)는 3이출력된다
+//좀더 응용해서 '카운트(count)'를 이용해 isEmpty프로퍼티를 사용해보면
+if favoriteGenres.isEmpty{
+  print("I have No favorite musice genre")
+} else{
+  print("I have favorite music genre")
+}
+//또, 응용하면 'insert프로퍼티'를 호출해 항목추가
+favoriteGenres.insert("Jazz")
+
+//---------------------------------------------------------------
+
+//계속이어서 가보자면
+// <<'remove 메서드'를 사용해 항목제거를 가능>>
+//해당집합set에 아이템이 있을경우 삭제하거나 값을 반환하고 없으면 'nil'을 반환
+var favoriteGenres2: Set<String> = ["Ballad", "Rock", "K-POP"]
+if let removeGenre = favoriteGenres2.remove("Rock") {
+      print("I dont like \(removeGenre)")
+}   else{
+      print("Nothing")
+}
+                          // 출력 ---> i don't lik Rock anymore!
+                          //즉, 성공했으면 -------->ROCK
+                          //만약 실패했으면 nil --->else
+  print(favoriteGenres2) // 출력 ---> "K-POP", "Ballad"
+
+//---------------------------------------------------------------
+
+//<< 'contain 메서드'를 이용해 집합내 특정아이템 유뮤 판별 >>
+if favoriteGenres2.contains("Funk"){
+  print("I like new thing")
+} else{
+  print(" what that genre")
+}               //출력---> what that genre            
+
+//---------------------------------------------------------------
