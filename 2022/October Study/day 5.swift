@@ -87,4 +87,26 @@ print("\(result3)")                                 //출력 1 && 2
 //                 2교시 (my ppt 76 ~ page)
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
+//전역함수 - 우리가지금까지 만들어 왔던 바로 '그' 함수
+//중첩함수 - 함수안에 함수
+//**사실 지금까지 우리가 사용한 모~든 함수는 '클로저closure'였다는 출생의 비밀...두둥
+
+// <클로저표현식> 은 다음과 같다
+//  1)컨텍스트에서 파라미터와 반환값 타입 유추
+//     Inferring parameter and return value types from context
+//   2)단일 표현식 클로저의 임시적 반환
+//     Implicit returns from single-expression closures
+//   3)약식인자 이름
+//     Shorthand argument names
+//     4)후행클로저 구문
+//     Trailing closure syntax
+
+//*cf 파라미터? 
+//              func join(string s1: String, toString s2: String, withJoiner joiner: String)
+//           --->  string tostring withjoiner.  외부 파라미터 / s1 s2 joiner 내부 파라미터
+
+//  클로저 표현식이란 ? 기본 클로저 함수 형태에서 쭉~ 쭉~ 축약해 가는 과정
+
+//---------------------------------------------------------------------
+//  < 정렬 메서드 sorted(by: ) >
 
