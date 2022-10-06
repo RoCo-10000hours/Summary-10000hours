@@ -67,7 +67,7 @@ interface SampleClass:NSObject --->
                                   중간 : '구현부'
                                   
 / 추가tip____>>> [sampleClass sampleMethod]; 부분을 swift로 바꾸면?
-                  sampleClass.sampleMethod() 가 된다 */
+                  sampleClass.sampleMethod() 가 된다 
                   
 //-------------------------------------------------------------
 
