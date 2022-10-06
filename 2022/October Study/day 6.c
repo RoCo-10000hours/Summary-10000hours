@@ -35,9 +35,17 @@ Next Step 줄임말....스티브잡스가 창업했던 회사이름
 @end
 
 int main() {                            // 프로그램 실행시작되는 주.요.함.수
-    SampleClass *sampleClass = [[SampleClass alloc]init];
-    [sampleClass sampleMethod];             //sampleClass.sampleMethod() '(feat.swift버전)'
-    return 0;                           //메인함수종료.0값반환
+    SampleClass *sampleClass = [[SampleClass alloc]init];       //*** alloc --> '할당하다allocate'의 줄임말
+                                                                            //새로운클래스에 메모리를 할당하는것
+                                                                            //클래스에 alloc메세지를 보내면, 그 클래스의 새로운 인스턴스를 받는다.
+                                                                        //해당 메서드는 객체의 모든 인스턴스 변수를 '0'으로 초기화하는데,
+                                                                        //그러나..이것만으론 초기화됬다할수없기에 'init'도 같이사용되는것
+                                                            // ClassA* a = [ClassA alloc];  형태와  a = [a init] 형태가 합쳐져
+                                                            // ClassA* a = [[ClassA alloc] init]; 되는것이고
+                                                            // 해당 코드는 새 ClassA 객체를 생성하고 그 후 초기화함. 그리고..
+                                                            // 초기화한 결과가 a 변수에 할당됨.
+    [sampleClass sampleMethod];       //sampleClass.sampleMethod() '(feat.swift버전)'
+    return 0;                         //메인함수종료.0값반환
 }
 
                                         //void--->The type void (타입무효) 
