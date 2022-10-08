@@ -507,6 +507,53 @@ print(man.age)      //----> 24 출력
 
 
 
+//--------------------------------------------------------------------
+     스위프트 주말 보충특강 (클로저closures)
+//--------------------------------------------------------------------
+
+
+func addTwoInts(_ firstNumber: Int, _ secondNumber: Int) -> Int {
+    return firstNumber + secondNumber
+}
+
+//print("\(addTwoInts(13, 2))")
+
+func sayHello(afterFunc: (Int, Int) -> Int) {
+    print("Hello world!")
+    print("\(afterFunc(2, 4))")
+}
+
+// 함수를 직접 매개변수로 보내기
+sayHello(afterFunc: addTwoInts)
+
+// 인라인 클로저를 매개변수로 보내기
+sayHello(afterFunc: { (firstNum: Int, secondNum: Int) -> Int in
+    return firstNum + secondNum
+})
+
+// 클로저 매개변수 뒤로는 아무것도 더 매개변수 없으니까 후행클로저 문법으로 축약 가능
+sayHello { (firstNum: Int, secondNum: Int) -> Int in
+    return firstNum + secondNum
+}
+
+// 물론 클로저도 상수나 변수에 넣어서 매개변수로 보내는 식도 가능하다
+let addTwoNumbers: (Int, Int) -> Int = { (firstNum: Int, secondNum: Int) -> Int in
+    return firstNum + secondNum
+}
+sayHello(afterFunc: addTwoNumbers)
+
+// 클로저 다이어트 대장정 돌입
+sayHello { firstNum, secondNum in
+    return firstNum + secondNum
+}
+
+sayHello { firstNum, secondNum in
+    firstNum + secondNum
+}
+
+sayHello { $0 + $1 }
+
+sayHello(afterFunc: + )
 
 
 
