@@ -321,7 +321,89 @@ print("\(strings)")             ///--> 출력시 ["OneSix", "FiveEight", "FiveOn
                                 (이거 직전에 후행클로저 중복부분은 아직도
                                 헷갈리니 다시 확인하길) */
                                 
+                                
 //---------------------------------------------------------------------
 //my ppt 94~
 //---------------------------------------------------------------------
 // < 캡쳐값 Capturing Values) > 
+//---------------------------------------------------------------------
+
+/*클로저는 상수/변수를 캡쳐(capture)가능함
+캡쳐가 가능하다??? ---> 해당 상수/변수가 범위 밖에 있떠라도
+                         가져와서 참고가 가능해짐
+우리가 생각가능한 가장 간단한 캡쳐 클로저형태는???
+-----> 다른 함수의 내에서 작성되어지는 '중첩함수'
+해당 '중첩함수'는 바깥함수에 있는 어떤인자/상수/변수든 캡쳐가 가능함! */
+
+//강사늼의 tip!!
+//일단, 기본틀을 우선 만들기를... 머리속에서 첫~끝까지 한번에
+//가는 사람은 천재이다
+
+//---------------------------------------------------------------------
+
+//     func makeIncrementer(forIncrement amount: Int) -> () -> Int {
+    
+//             func incrementer() -> Int {
+        
+//                 return 0
+//               }
+    
+//               return incrementer
+//              }
+
+//이것처럼 기본틀을 잡아놓고 여기에서 로직을 진행해나가면된다
+func makeIncrementer(forIncrement amount: Int) -> () -> Int {
+    var runningTotal: Int = 0
+    
+    func incrementer() -> Int {
+        runningTotal += amount
+        return runningTotal
+    }
+    
+    return incrementer
+}
+
+let incrementByTen = makeIncrementer(forIncrement: 10)
+
+print("\(incrementByTen())")         //--> 출력시 10
+print("\(incrementByTen())")         // 10 + 10 = 20
+print("\(incrementByTen())")         // 20 + 10 = 30
+                        // < return --->뒤에서 이어지는 결과는 앞에서가져옴 >
+//****주의점****                        
+let incrementBySeven = makeIncrementer(forIncrement: 7)
+print("\(incrementBySeven())")          // 37 (x) ?????
+                                //기존과 분리되어 새로생성 ----> ' 7 '
+
+//---------------------------------------------------------------------
+
+// 위에서 캡쳐되어진 값들은 runningTotal 과 amount 이다
+// 2개의 값을들 캡쳐한 후에 incrementer함수는 호출될때마다
+// amount로 runningTotal 을 증가시키는 형태의 클로저로서
+// makeIncrementer에의해 반환되어진다
+
+//즉, 다시 설명하자면 파라미터(매개변수)가 따로 없는
+//안에 존재하는 중첩함수는 runningTotal,amount를 참조reference하고있다
+// 해당 '참조를 캡쳐하여' 함수내에서 사용중!
+
+//---------------------------------------------------------------------
+//--------------------------------------------------------------------
+
+
+// < 클로저는 참조타입(Closures are Reference Type) > my ppt 98.
+let alsoincrementByTen = incrementByTen     //이라고 또 할당할 경우
+print("\(alsoincrementByTen())")     // 20 + 10  + 10 = 40
+/*위의 코드는
+  alsoincrementByTen와 incrementByTen 두 호출들은 같음을 보여준다.
+  왜냐하면 2개무도 같은 클로저를 참조하기떄문에 
+  둘다 증가하고 같은 러닝합계running sum를 반환한다.
+  즉.............
+  서로다른 2개의 상수or변수에 클로저를 할당한다면
+  각각은 모두 같은 클로저를 참조한다는 의미를 보여준다*/
+  
+
+//---------------------------------------------------------------------
+//--------------------------------------------------------------------
+
+
+// < 이스케이프 클로저 (Escaping Closures) >
+
