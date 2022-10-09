@@ -643,12 +643,201 @@ swapTwoValues(&someInt, &anotherInt)
 
 //---------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------
-        8 ~ 9 교시                          my ppt 56page ~ 
+        8 ~ 9 교시                          my ppt 56page ~ .
 //---------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------
 
 << 프로토콜 지향 프로그래밍 >>
 
-/* swift는 프로토콜 지향언어이다 
-   "swift is a Protocol-Oriented Programming Language"
+/* swift는 클래스가아닌 프로토콜 지향언어이다 
+   "swift is a Protocol-Oriented Programming Language" */
+   
+// 클래스 calss --> 내가 누구의 속성을 물려받았는가? ---> 나의 정의 ---> 객체지향
+// 프로토콜     ---> 내가 무엇을 하는 존재인가? ---> 프로토콜지향  
+   
+//사람과 원숭이가 채택하는 프로토콜을 만들어본다면
+protocol Talkable {
+    var topic: String { get set }
+    func talk(to: self)
+}
+
+struct Person: Talkable {
+    var topic: String
+    var name: String
+    
+    func talk(to: Person) {
+        print("\(topic)에대해 \(to.name)에게 이야기합니다")
+    }
+}
+
+struct Monkey: Talkable {
+    var topic: String
+    
+    func talk(to: Monkey) {
+        print("우끼기끼끼 \(topic)")
+    }
+}
+
+//위의 코드들을 줄이기 위해선 
+/// 중복되는 메서드 함수 구현은 ' extension으로'미리 구현해줄 수 있다
+protocol Talkable {
+    var topic: String { get set }
+    func talk(to: self)
+}
+
+extension Talkable {
+    func talk(to: Self) {
+        print("\(to) 라고하는 \(topic)")
+    }
+}
+ 
+struct Person: Talkable {
+    var topic: String
+    var name:  String
+}
+struct Monkey: Talkable {
+    var topic: String
+}
+
+let roco = person(topic: "swift", name: "roco")
+
+roco.talk(to: rome)
+//이렇게 하나의 프로토콜을 만들어두고 , 초기구현을 해둔다면
+//여러타입에서 해당기능을 사용원할때마다 프로토콜을 채택하기만하면된다
+//그런데 마약에 초기구현된 ㅍ로토콜이외의 동작을 원한다면???
+//그냥 추가 재정의 해주면된다 ((( override (X) )))
+                                //-->왜?? 함수개념이 아니기에 override는 아니다
+
+//---------------------------------------------------------------------------------
+protocol Flyable { func fly() }         //1번 프로토콜 . fly함수 구현
+
+extension Flyable {                             //fly함수에 기능추가
+    func fly() {
+        print("파닥파닥")
+    }
+}
+
+protocol Runable { func run() }          //2번 프로토콜 
+
+extension Runable {
+    func run() {
+        print("쌩에에엥~")
+    }
+}
+
+Protocol Talkable { func talk() }        //3번 프로토콜 
+
+extension talk {
+    func talk() {
+        print("나랏말씀이듕극에달아")
+    }
+}
+
+
+sturct Bird: Flyable, Runable { }
+let bird = Bird()
+bird.fly()
+bird.run()
+
+sturct Person: Runable, Talkable { }
+let persion = Person()
+person.run()
+person.talk()
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<< 다시비교하는 객체지향 vs 프로토콜지향 >>
+
+객체지향 : class사용, 상속으로 계층화, override로 메서드 추가/대체, 하나의객체는 단일상속만가능,
+           reference type, 메모리공유로 적은메모리할당(공유경제)(그렇기에..의도치않은 갱신을 막기위한 lock기능 필요)
+           멀티스레드/프로세스에 약점
+           
+프로토콜지향 : struc.t & enumm사용, 동일속성부여, extension으로 동일메서드구현, 하나의 객체에 여러 프로토콜 부여가능           
+               value type, 매번복제로 많은 메모리사용(지연복제로 이를 극복, 요즘 시대가 발점함에따라 메모리용량 확보많이됨)
+               멀티스레드/프로세스에 강점
+               
+//참고 cf(아직 잘이해안되는부분이지만 일단 적어두겠음)
+//프로토콜과클래스는 다르며 클래스였으면 youngman : run, swi, talk,..., energetic
+//지연복제? 복사하는 타이밍을조절하는 게으른lazy 복사기술, a=b로 일단 겉으로만 표시해두고
+//          만약 a내용이 수정되면 삐리릭 하고 그때가서야 작업처리
+
+**우리가 활용할 객체가 class기반인지 , sturct기반인지 반드시 참고하고 사용할 필요가있다**
+
+[ 프로토콜에서 하는건 메서드를 구현을 하는게 아니라 요청하는것이고 
+그걸 받아서 struct에서 메서드가있으면 구현하고 혹은
+extension에 있으면 그걸 가져오고 그것도아니면 
+그냥 struct에서 새로메서드를 추가하면됨 ]
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------                                                                            
+                                                                    my ppt ~ 88page
+
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+
+
+(추가자료)
+//주말 swift 보충특강에서 나온 프로토콜 관련 예시코드 아래내용
+
+// protocol을 따르는 객체라면 이런 거는 해줘야...
+protocol Walkable {
+    var shoes: String {get set}
+    func walk()
+    func breath()
+}
+
+protocol Talkable {
+    
+}
+
+protocol Flyable {
+    
+}
+
+// 중복되는 메서드 함수 구현은 extension으로 미리 구현해줄 수 있다
+//원래는 이거 고양이 맨아래 짜르르 붙어있었음
+extension Walkable {
+    func breath() {
+        print("숨쉬는 중")
+    }
+}
+
+// 사람은 걸을 수 있으니까 Walkable 프로토콜을 따르게 하자
+struct Person: Walkable, Talkable {
+    var name: String = "홍길동"
+    var shoes: String = "고무신"
+    
+    func walk() {
+        print("\(name)이 \(shoes)를/을 신고 걷고 있습니다.")
+    }
+}
+
+var ned = Person()
+ned.name = "ned"
+ned.shoes = "나이키 에어조던 한정판"
+ned.walk()
+ned.breath()
+
+struct Cat: Walkable, Flyable {
+    var stewardName: String = "고길동"
+    var shoes: String = "맨발"
+    
+    func walk() {
+        print("고양이 님께서 집사 \(stewardName)와 함께 \(shoes)을/를 신고 걷고 계십니다.")
+    }
+}
+
+var myCat = Cat()
+myCat.stewardName = "슈렉"
+myCat.shoes = "장화"
+myCat.walk()
+myCat.breath()
+
+
+
+//---------------------------------------------------------------------------------
+
+
+
 
