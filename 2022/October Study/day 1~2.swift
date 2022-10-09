@@ -45,6 +45,8 @@ print(multipleline)
 //2.그렇기에 여럿값들을 하나의 항목으로 임시적으로 묶음
 //3.결국 ...이로인해 하나의 함수에서 ===> 여러값들을 반환하는데 사용 가능!
 let mytuple: (Int, String, Double) = (5, "hi", 3.3)
+let mytuple = (5, "hi", 3.3) @@@ 이렇게도가능((일단 교재엔 이렇게나옴)) @@강사님도 이걸로씀@@
+
                   //지금 위의줄 자체가 하나의 함수이기에
 print(mytuple)    //지금과같은 출력은 의미x mytuple이아닌 무엇을 적어도
                   //프린트가 된다
@@ -564,7 +566,7 @@ while integers.count > 1 {
 }
 print(integers).      //---> [1] 출력
 
-                                                             ( my ppt ~ 169page)
+                                                          ( my ppt ~ 169page)
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 [2] repetat - while 반복문
 
