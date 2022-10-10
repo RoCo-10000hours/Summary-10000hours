@@ -1,10 +1,10 @@
 import Foundation
 
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-//10.2(saturday)
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-1~2 주차 강좌 복습(rewind)
+    1~2 주차 (월-금) 강좌 
+           복습(rewind)
 
 /    << 초반부 1주차 (목,금수업)분량분은 아직 새싹인 내겐 hard한 범위와 깊이를
         강사님께서 일부로 다뤄주신것이기에  총 복습이 끝나면 다시돌아가서 rewide하자 >>..
@@ -793,8 +793,143 @@ func multiplyByTen(vlaue: Int?) {
     print(result)
 }
 
+
+
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-[5]  switch 구문
+
+[5-1]  switch 구문
+
+//스위치를 껏다켯다하는 느낌보다는
+/'이쪽도끼가 니도끼냐 요쪽도끼가 니도끼냐?'이런느낌
+/즉, 다른언어들 같으면 중간에'break'같은걸 걸겠지만
+/얜 그런거 없이 case들중에 '하나라도 걸리면 알아서 끊고 넘어'간다
+//if ...else if ...구문이 2,3개이상의 조건을 만들 경우 대안이 될 수 있다
+
+switch 표현식{          --------> ////( @@@ 주의!! ) 할것은 '표현식'과 
+    case 일치하는 값1:             //'일치하는값'의 type이 서로같아야함               
+        //실행할 코드구문               
+    case 일치하는 값2:
+        //실행할 코드구문
+    case 일치하는 값3, 일치하는 값4:            ----> ||
+        //실행할 코드구문
+    default             -------->// 표현식과 일치하는 case구문이 없을때수행
+        //코드구문
+}
+
+
+let value = 5
+switch (value) {
+    case 0:
+        print("zero")           //tip (중괄호는 필수이나 소괄호는 선택사항)
+    case 1:                     // case0 (x), case 0 (o)
+        print("one")
+    case 2:
+        print("two")   
+    default:
+        print("no number")
+}                               //---> "no number"출력
+
+
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+[5-2]  switch - case 구문 결합하기
+
+/* case구문은 자신만의 실행코드를 가지고있지만...
+   가끔은 서로다른 case들끼리 동일한 실행코드를 가질수도 있다
+   그럴땐 그런것들을 묶어주면된다 */
+   
+let value = 5
+switch (value) {
+    case 0,1:                   //--->*switch문에서 콤마(,)는 &&(X), ||(o)
+        print("zero, one")           
+ // case 1:                     
+ // print("one")
+    case 2:
+        print("two")   
+    default:
+        print("no number")
+}  
+
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+[5-3]  switch 구문 '범위매칭'
+
+//그냥 간단히말해서 '일치하는값을 범위로 설정'해둔다는 것
+
+let temperature = 83
+switch (temperature) {
+    case 0...49:
+        print("cold")
+    case 50...79:
+        print("warm")
+    case 80...110:
+        print("hot")
+    default:
+        print("tempereature out of range")
+        
+}
+
+//cf_ 이걸 if else구문으로 만들어보기를...얼마나차기가 큰지를 느낄것
+
+
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+[5-4]  switch - where 구문 
+
+//case구문에 부가적인 조건들을 추가하기위해 사용된다
+
+let temperature = 50
+switch (temperature) {
+    case 0...49 where temperature % 2==0:
+        print("cold and even(짝수)")
+    case 50...79 where temperature % 2==0:
+        print("warm and even(짝수)")
+    case 80...110 where temperature % 2==0:
+        print("hot and even(짝수)")
+    default:
+        print("tempereature out of range")
+}
+
+/*사실은 이 switch문 자체가 요기위에 사이사이에 원래라면
+break를 걸어줘야하는데 그런번거로움을 없애기위해서 도입된거....
+그..그런데...이걸또 반대로 생각해서...필요할떄도 있지않나??
+하고 나온게 아래의 구문이다. */
+
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+[5-5]  switch - fallthrough 구문 
+
+//fallthrough는 직역하면 '완료(실현)되지 못한'이란 의미
+/*    기본적으로 switch case구문에선 다른언어들과는 달리
+      case조건에 일치하면? ---->자동으로 구문밖으로 */
+/그러나 fallthrough구문을 사용하면? ---> 해당case구문은 그냥 PASS      
+
+let temperature = 50
+switch (temperature) {
+    case 0...49 where temperature % 2==0:
+        print("cold and even(짝수)")
+        fallthrough
+    case 50...79 where temperature % 2==0:
+        print("warm and even(짝수)")
+        fallthrough
+    case 80...110 where temperature % 2==0:
+        print("hot and even(짝수)")
+    default:
+        print("tempereature out of range")
+        //break (<---그냥 머라도아무것도 넣고싶을떈 print대신에 이걸넣은 강사님)
+}                                             
+                                 /* 근데 이것저것 출력해본결과
+                                    10 ---> cold~,wanrm~,hot~처럼 fallthrough붙으면
+                                    조건성립상관없이 일단print실행됨
+                                    ....근데 hot은 왜된거지? */
+
+
+                                                                my ppt ~ 183page
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+
 
 
