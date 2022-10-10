@@ -512,7 +512,12 @@ my ppt 161 ~ 182 ===> 제어흐름 관련 내용
 
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
+
+
 << 반복제어 흐름 looping control >>
+
+
+
 [1] for - in 반복문
 
 //배열,딕셔너리와 같은 '컬렉션'을 가지고 작업할때 유용함
@@ -547,19 +552,19 @@ for (name, age) in people {                          //Dictionary의 itemdms 'ke
 // for----> 몇번반복해야하는지 알.고.있.을.때 유용함
 /while 반복문 ---> 조건충족을 위해 몇번 반복해야하는지 
                    알 수 없는 경우 유용함, 만족할 때까지 반복
-while 조건문 {              --->조건문(ture,false를 반환하는 표현식)
-    //실행될 스위프트 구문   ---> (조건문이 true인 동안에만 실행될 코드)
-}
+//*표현식*                   
+        while 조건문 {                  --->조건문(ture,false를 반환하는 표현식)
+          //실행될 스위프트 구문        ---> (조건문이 true인 동안에만 실행될 코드)
+        }
+
 /* 시작과 끝도 굳이 따지지않고 '어떤조건'이 만족할떄까지 이므로
     굳이 while뒤에 이것저것 안쎃고 '조.건.문'만 딱 써있는거임 */
 
-
 var myCount = 30
-
 while myCount < 100 {           // 98...99. (end)
     myCount += 1                // 출력하면 100(99+1)            
-}           //강사님의경운엔 myCount < (99 + 1) 
-                //이런식으로 추가입력해서 연습하셨다고한다
+}             //강사님의경운엔 myCount < (99 + 1) 
+              //이런식으로 추가입력해서 연습하셨다고한다
 
 var integers = [1, 2, 3] 
 while integers.count > 1 {
@@ -567,8 +572,6 @@ while integers.count > 1 {
 }
 print(integers).      //---> [1] 출력
 
-                                                         
-                                                          ( my ppt ~ 169page)
 
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 [3] repetat - while 반복문
@@ -668,9 +671,13 @@ while index < 20 {
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-<< 반복제어 흐름 looping control >>
 
-if 구문 사용하기 
+
+<< 조건부제어흐름 conditional flow control >>
+
+
+
+[1] if 구문 사용하기 
 /*  swift에서의 if구문 특이점은, 
 if구문안의 실행될 코드가 한 줄이라해도 ''중괄호{..}가 필수''이다 */
 //(강사님의 짐작으로는 어떤곳은 쓰이고 어떤곳은 안쓰여서 헷갈릴 수 있기에
@@ -713,7 +720,81 @@ if someInteger < 100 {
      print("100")           //---> 100 출력
  }
 
+
+그런데 만약 조건이 수없이 많아서
+if조건들이 지저분하게 늘어진다면???
+그래서 나온게 아래의 guard구문 
+
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
+
 [4]  guard 구문 
+
 //스위프트에만 있다
+/ guard도 if처럼 '불리언표현식'을 포함하고 
+  true일 경우에만 guard다음에 위치한 코드가 실행된다
+/ guard 구문운 불리언표현식이 
+         ---> false일경우 이에 수행될 'else'절이 ''반드시필요''
+             --->그리고 이런 'else'절은 반드시 코드흐름을 빠져나가는
+                  (return, break, continue, thorw...)구문등을 포함함
+//이러한 guard는 주로 특정한 조건을 만족하지 않은경우라도
+//       현재의 함수 or 반복문에서 빠져나갈 수 있게 해줄떄 이용됨
+
+//*표현식*
+guard 조건문(불리언표현식)else {
+    //조건문이 false일 때 실행될 스위프트 구문
+    < 종료구문 >
+}
+    //조건문이 true일 때 실행될 스위프트 구문
+
+/(*Tip/ / / guard는 어차피 필수로 else동반하기에...; ' guard..else' 로 익혀두기를)
+
+func solution() {
+	if condition1 {
+    	if condition2 {
+        	if condition 3 {
+            	print("come in")
+			} else {
+            	print("bye")
+			}
+		} else {
+        	print("bye")
+		}
+	} else {
+    	print("bye")
+	}
+}    /// --> 세 조건이 모두 참이면 come in, 
+      //     하나라도 거짓이면 bye를 출력하는 함수
+             //(*출처블로그 didu-story.tistory.com)
+             
+// 위의 코드를 guard를 사용해서 바꿀 경우
+func solution() {
+	guard condition1 else { return print("bye") }
+    guard condition2 else { return print("bye") }
+    guard condition3 else { return print("bye") }
+    print("come in")
+}
+/이렇게 정리될 수 있었떤 이유는 기본으로 돌아가서
+  guard란건 'true'일 경우에만 구문다음위치의 코드가 실행되기 때문이다
+/*이게 만약 회원가입하는 코드였으면
+  condition1에서 회원이름 (영어입력필수조건, false면 다음으로 못넘어감)
+  condition2에서 생년월일 (1990년생 이후만 가입가능, false면 다음으로 못넘어감)
+  condition3에서  비밀번호 (10자리까지만 입력가능, false면 다음으로 못넘어감)
+  그리고 위의 세조건이 """모두""" true이면 그 다음구문인 실행 print("회원가입축하")
+  실행되게 하면된다 */   ((주로 대형프로젝트에 많이쓰인다는 guard구문))
+
+//추가로 '옵셔널바인딩 guard let'에관한 예제 코드도 하나 봐두자
+func multiplyByTen(vlaue: Int?) {
+    guard let number = value, number < 10 else{
+        print("Number is too high")
+        return
+    }
+    let result = number * 10
+    print(result)
+}
+
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+[5]  switch 구문
+
+
