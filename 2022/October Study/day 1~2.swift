@@ -276,7 +276,7 @@ class someClass {}      //이런 클래스가 있다면,
         // swift로 코딩을 작성할때 컴파일러가 '어떤값의 특정타입을 식별못하는 경우' 가 종종 발생하기이               
             //---> 이런경우는 메서드나 함수가 '반환'하는 값이 불분명하거나 추론되지않는 타입값일떄 발생
                 //---> 그래서 이럴땐 타입 캐스팅 
-                     --->  << as >> 키워드를 사용하여 '형변환'을시킴
+                     --->  << as! >> 키워드를 사용하여 '형변환'을시킴
 
 let myValue = A( )as! String    
 //----> A()메서드가 반환하는 값을 string타입으로 처리해야한다고 커맢일러에게 알리기 위함                      
@@ -288,7 +288,7 @@ let myValue = A( )as! String
 / ((업캐스팅)) -  //특정 class의 객체가 '상위클래스'들 중의 하나로 변형
                     //예를들어 상위에서 하위클래스 순서로 UIView > UIControl > UIButton이 존재
                      //---> let myButton: UIButton = UIButton()   --->(버튼을 만듬)       
-                     //     let myControl = myButton as UIControl 
+                     //     let myControl = myButton as! UIControl 
                     위의 코딩은 'as'를 사용하여 업캐스팅한 모습이다
 
 / ((다운캐스팅)) - // 단순히 'as'가아니라 
