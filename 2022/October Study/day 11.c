@@ -277,7 +277,7 @@ int main() {
 
 << 정수로 끌어올리기 integer promotion >>
 
-//정수 승격은 int... 또는 unsigned int보다"작은" 정수 유형의 값이 int또는 unsigned int로 변환되는 프로세스
+//정수 승격은 int.. 또는 unsigned int보다"작은" 정수 유형의 값이 int또는 unsigned int로 변환되는 프로세스
 
 
 
