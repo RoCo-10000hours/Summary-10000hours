@@ -431,4 +431,82 @@ Box box2 = [[Box alloc]init];
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
 << 상속 inheritance >>
-22page~
+//상속을 통해 다른 클래스로 클래스를 정의 가능, 더빠른 코딩가능
+//'바퀴를 재발명 하려하지말고, 바퀴를 응용하고 이용하라'
+
+
+<< 기본 및 파생 클래스 Base&Derived class>>
+//옵젝c는 다단게 상속만 가능. 즉, 기본클래스는 하나만 가질수 있고 다단계상속만 허용함
+/ 옵젝c의 모든 클래스는 NSObject라는 수퍼클래스에서 파생됨
+
+//이에관한 예제실습을 보여준 것이
+// Person 클래스 정의
+@interface Person : NSObject {
+    NSString *personName;
+    NSInteger personAge;
+}
+
+- (id)initWithName:(NSString *)name andAge:(NSInteger)age;
+- (void)print;
+@end
+
+@implementation Person
+
+- (id)initWithName:(NSString *)name andAge:(NSInteger)age {
+    self = [super init];
+    
+    personName = name;
+    personAge = age;
+    
+    return self;
+}
+
+- (void)print {
+    NSLog(@"Name: %@", personName);
+    NSLog(@"Age: %ld", personAge);
+}
+
+@end
+
+// Person을 상속받은 Employee 클래스 정의
+@interface Employee : Person
+
+@end
+
+int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+
+        Person *person = [[Person alloc] initWithName:@"Ned" andAge:13];
+        [person print];
+    }
+    return 0;
+}
+
+//이것이고... 그리고 이걸 swift로 다시쓰는 시간들을 가졌었음.
+
+
+
+
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+<< 다형성Polymorphism >>
+/ 일단 의미그대로 '많은 형태를 갖는다는 의미'
+//일반적으로는 클래스의 계층구조가 있고 상속으로 관련되어 있을때 발생
+/*옵젝c에서는 멤버함수에 대한 호출이 함수를 호출하는 객체의 유형에 따라
+  다른 함수가 실행되도록 한다는것 */
+     //(예를들어 shape라는 모든 모양에대한 기본인터페이스를 제공하는 class가존재
+     //  square나 rectangle은 기본클래스인 shape에서 파생되어진다    )
+ 즉, 다형성은 두 클래스의 메서드 구현을 기반으로 
+     기본 클래스와 파생 클래스간의 메서드 전환을 처리한다
+
+                                                                            ~27page
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+<< 데이터 캡슐화 >>
+
+ ~28page
+
+
+
