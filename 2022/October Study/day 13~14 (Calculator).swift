@@ -264,3 +264,6 @@ class ViewController: UIViewController {
 }
 
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+X-CODE와 친해질겸 저녁시간에 해본 UI디자인
+<img src="https://user-images.githubusercontent.com/114223996/195967587-f6216b97-c9d8-4d4d-86a1-daa546c6f9c7.png" width="200" height="300"/>
