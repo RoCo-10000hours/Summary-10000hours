@@ -22,7 +22,7 @@ import AVFoundation
 
     //class 밖에서 정의할 내용들
 
-enum CalcOperation {            //operation: 직영하면 작용;
+enum CalcOperation {            //operation: 직역하면 작용;
     case plus
     case minus
     case multiply
