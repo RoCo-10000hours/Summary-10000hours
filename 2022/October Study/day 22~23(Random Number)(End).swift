@@ -11,6 +11,6 @@
 //-------------------------------------------------------------------------------
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-Growth_Document1-LockNumber
+Growth_Document1-LockNumber.
 ------>
 https://github.com/RoCo-10000hours/Growth_Document1-LockNumber
